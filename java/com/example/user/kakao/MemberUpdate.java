@@ -1,6 +1,7 @@
 package com.example.user.kakao;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,10 +13,10 @@ public class MemberUpdate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.member_update);
         final Context ctx = MemberUpdate.this;
-        findViewById(R.id.btnDetail).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btUpdate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(ctx,MemberDetail.class));
             }
         });
 

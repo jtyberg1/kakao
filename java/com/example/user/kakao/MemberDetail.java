@@ -13,16 +13,16 @@ public class MemberDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.member_detail);
         final Context ctx = MemberDetail.this;
-        findViewById(R.id.btnList).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ctx,MemberList.class));
-            }
-        });
-        findViewById(R.id.btnUpdate).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btDetail).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ctx,MemberUpdate.class));
+            }
+        });
+        findViewById(R.id.btList).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ctx,MemberList.class));
             }
         });
     }

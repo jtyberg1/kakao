@@ -22,10 +22,9 @@ public class Main extends AppCompatActivity {
         findViewById(R.id.moveLogin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                Intent intent = new Intent(ctx,Login.class); //교통편:(From,To)
-                startActivity(intent);
-                */
+                SqliteHelper helper = new SqliteHelper(ctx);
+                // helper 라는 객체를 만드는 것은
+                // 곳 SQLite DB를 만드는 것이다.
                 startActivity(new Intent(ctx,Login.class));
             }
         });
@@ -45,12 +44,11 @@ public class Main extends AppCompatActivity {
             this.ctx = ctx;
         }
         public abstract SQLiteDatabase getDatabase();
-    }
+    } // end of QueryFactory
+
     static class SqliteHelper extends SQLiteOpenHelper{
 
-        public SqliteHelper(Context context, String name,
-                            SQLiteDatabase.CursorFactory factory,
-                            int version) {
+        public SqliteHelper(Context context) {
             super(context, DBInfo.DBNAME, null, 1);
             this.getWritableDatabase();
         }
@@ -65,8 +63,8 @@ public class Main extends AppCompatActivity {
                     " %s TEXT, " +
                     " %s TEXT, " +
                     " %s TEXT, " +
-                    " %s TEXT, " +
-                    ")",
+                    " %s TEXT " +
+                    ") ",
                     DBInfo.MBR_TABLE,
                     DBInfo.MBR_SEQ,
                     DBInfo.MBR_NAME,
@@ -113,7 +111,8 @@ public class Main extends AppCompatActivity {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+            db.execSQL("DROP TABLE IF EXISTS " + DBInfo.MBR_TABLE);
+            onCreate(db);
         }
     }
 }
